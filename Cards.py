@@ -52,20 +52,17 @@ def next_hand(event):
     y = 10
     for card in card_list:
         #print card, x, y  # test
-        canvas1.create_image(x, y, image=image_dict[card], anchor=NW)
+        canvas1.create_image(x, y, image = image_dict[card], anchor = NW)
         # calculate each NW corner x, y
         x += 90
  
-# change this to the directory your card GIFs are in
-image_dir = r"C:\Users\Isaac\Documents\Projects\Python\Cards\Images"
- 
 # load a sample card to get the size
-photo1 = PhotoImage(file="C2.gif")
+photo1 = PhotoImage(file = "C2.gif")
  
 # make canvas 5 times the width of a card + 100
 width1 = 5 * photo1.width() + 100
 height1 = photo1.height() + 20
-canvas1 = Canvas(width=width1, height=height1)
+canvas1 = Canvas(width = width1, height = height1)
 canvas1.pack()
  
 # now load all card images into a dictionary
