@@ -4,9 +4,11 @@
 
 from Tkinter import *
 import random
+import os
  
 root = Tk()
 root.title("Click me!")
+os.chdir("Images")
  
 def create_cards():
     """
@@ -34,7 +36,7 @@ def create_images():
     image_dict = {}
     for card in card_list:
         # all images have filenames the match the card_list names + extension .gif
-        image_dict[card] = PhotoImage(file=image_dir+"\\"+card+".gif")
+        image_dict[card] = PhotoImage(file = card + ".gif")
         # print image_dir+card+".gif"  # test
     return image_dict
  
@@ -58,7 +60,7 @@ def next_hand(event):
 image_dir = r"C:\Users\Isaac\Documents\Projects\Python\Cards\Images"
  
 # load a sample card to get the size
-photo1 = PhotoImage(file=image_dir+"\C2.gif")
+photo1 = PhotoImage(file="C2.gif")
  
 # make canvas 5 times the width of a card + 100
 width1 = 5 * photo1.width() + 100
