@@ -43,30 +43,45 @@ def create_images():
 
 def next_hand(event):
     """create the card list, shuffle, pick five cards and display them"""
-    card_list = create_cards()
-    card_list = shuffle_cards(card_list)
-    card_list = pick_5cards(card_list)
-    root.title(card_list)  # test
+    deck = create_cards()
+    shuffled_cards = shuffle_cards(deck)
+    card_list = pick_5cards(shuffled_cards)
+    root.title(shuffled_cards)  # test
 
     # now display the card images at the proper location on the canvas
-    x = 10
+    x = canvas1.winfo_width() / 7
     y = 10
-    for card in card_list:
+    hor_count = 0
+    ver_count = 0
 
-        #print card, x, y  # test
-        canvas1.create_image(x, y, image = image_dict[card], anchor = NW)
+    canvas1.delete(ALL)
 
-        # calculate each NW corner x, y
-        x += 90
+    for card in shuffled_cards:
 
-# load a sample card to get the size
+        if hor_count < 6:
+            ver_count = 0
+            hor_count += 1
+            x += canvas1.winfo_width() / 7
+            y = 10
+
+        if ver_count < 6:
+        #if x < canvas1.winfo_width() - image_dict[card].width():
+            canvas1.create_image(x, y, image = image_dict[card], anchor = NE)
+
+            # calculate each NW corner x, y
+            y += 25
+            ver_count += 1
+
+        hor_count += 1
+
+   # load a sample card to get the size
 photo1 = PhotoImage(file = "C2.gif")
 
 # make canvas 5 times the width of a card + 100
-width1 = 5 * photo1.width() + 100
-height1 = photo1.height() + 20
-canvas1 = Canvas(width = width1, height = height1)
-canvas1.pack()
+#width1 = 5 * photo1.width() + 100
+#height1 = photo1.height() + 20
+canvas1 = Canvas(root, width = 1440, height = 900)
+canvas1.pack(expand = 1, fill = BOTH)
 
 # now load all card images into a dictionary
 image_dict = create_images()
