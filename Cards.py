@@ -35,9 +35,10 @@ def create_images():
     card_list = create_cards()
     image_dict = {}
     for card in card_list:
+
         # all images have filenames the match the card_list names + extension .gif
         image_dict[card] = PhotoImage(file = card + ".gif")
-        # print image_dir+card+".gif"  # test
+
     return image_dict
 
 def next_hand(event):
@@ -51,8 +52,10 @@ def next_hand(event):
     x = 10
     y = 10
     for card in card_list:
+
         #print card, x, y  # test
         canvas1.create_image(x, y, image = image_dict[card], anchor = NW)
+
         # calculate each NW corner x, y
         x += 90
 
@@ -67,7 +70,6 @@ canvas1.pack()
 
 # now load all card images into a dictionary
 image_dict = create_images()
-#print image_dict  # test
 
 # bind left mouse click on canvas to next_hand display
 canvas1.bind('<Button-1>', next_hand)
