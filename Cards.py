@@ -41,39 +41,35 @@ def create_images():
 
     return image_dict
 
-def next_hand(event):
+def layer_cards(event):
     """create the card list, shuffle, pick five cards and display them"""
     deck = create_cards()
     shuffled_cards = shuffle_cards(deck)
     card_list = pick_5cards(shuffled_cards)
-    root.title(deck)  # test
+    root.title("Cards are layered")  # test
 
     # now display the card images at the proper location on the canvas
     x = canvas1.winfo_width() / 9
     y = 10
     count = 0
-    #ver_count = 0
 
     canvas1.delete(ALL)
 
     for card in shuffled_cards:
 
         if count < 7:
-        #if x < canvas1.winfo_width() - image_dict[card].width():
+
             canvas1.create_image(x, y, image = image_dict[card], anchor = NE)
 
             # calculate each NW corner x, y
             x += canvas1.winfo_width() / 9
-	    # ver_count += 1
-	    count += 1
+            count += 1
 
-#	if hor_count is 8:
 	else:
-            #ver_count = 0
             count = 0
             canvas1.create_image(x, y, image = image_dict[card], anchor = NE)
             y += 25
-            x = canvas1.winfo_width() / 9        
+            x = canvas1.winfo_width() / 9
 
 # load a sample card to get the size
 photo1 = PhotoImage(file = "C2.gif")
@@ -88,6 +84,6 @@ canvas1.pack(expand = 1, fill = BOTH)
 image_dict = create_images()
 
 # bind left mouse click on canvas to next_hand display
-canvas1.bind('<Button-1>', next_hand)
+canvas1.bind('<Button-1>', layer_cards)
 
 root.mainloop()
