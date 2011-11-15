@@ -46,35 +46,36 @@ def next_hand(event):
     deck = create_cards()
     shuffled_cards = shuffle_cards(deck)
     card_list = pick_5cards(shuffled_cards)
-    root.title(shuffled_cards)  # test
+    root.title(deck)  # test
 
     # now display the card images at the proper location on the canvas
-    x = canvas1.winfo_width() / 7
+    x = canvas1.winfo_width() / 9
     y = 10
-    hor_count = 0
-    ver_count = 0
+    count = 0
+    #ver_count = 0
 
     canvas1.delete(ALL)
 
     for card in shuffled_cards:
 
-        if hor_count < 6:
-            ver_count = 0
-            hor_count += 1
-            x += canvas1.winfo_width() / 7
-            y = 10
-
-        if ver_count < 6:
+        if count < 7:
         #if x < canvas1.winfo_width() - image_dict[card].width():
             canvas1.create_image(x, y, image = image_dict[card], anchor = NE)
 
             # calculate each NW corner x, y
+            x += canvas1.winfo_width() / 9
+	    # ver_count += 1
+	    count += 1
+
+#	if hor_count is 8:
+	else:
+            #ver_count = 0
+            count = 0
+            canvas1.create_image(x, y, image = image_dict[card], anchor = NE)
             y += 25
-            ver_count += 1
+            x = canvas1.winfo_width() / 9        
 
-        hor_count += 1
-
-   # load a sample card to get the size
+# load a sample card to get the size
 photo1 = PhotoImage(file = "C2.gif")
 
 # make canvas 5 times the width of a card + 100
